@@ -1,1 +1,1 @@
-#Coming soon... ![demo](./demo.mp4)
+#Coming soon... ![demo](demo.mp4)

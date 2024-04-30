@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.prevent-iamge-drag {
+  cursor: pointer;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 2s ease-out;
+}
+
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.01);
+  }
+
+  100% {
+    transform: scale(20);
+  }
+}
+
+.animate-scale-up {
+  animation: scaleUp 100s linear forwards;
+}
+
+
+
+/* clock */
+.react-clock {
+  display: block;
+  position: relative;
+}
+
+.react-clock,
+.react-clock *,
+.react-clock *:before,
+.react-clock *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.react-clock__face {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 1px solid white;
+  border-radius: 50%;
+  box-shaodw: 0 0 5px #000, 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+}
+
+.react-clock__hand {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+}
+
+.react-clock__hand__body {
+  position: absolute;
+  background-color: white;
+  transform: translateX(-50%);
+  box-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+}
+
+.react-clock__mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+}
+
+.react-clock__mark__body {
+  position: absolute;
+  background-color: white;
+  transform: translateX(-50%);
+  box-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+}
+
+.react-clock__mark__number {
+  position: absolute;
+  left: -40px;
+  width: 80px;
+  text-align: center;
+}
+
+.react-clock__second-hand__body {
+  background-color: white;
+  box-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+}
+
+
+/* clock */

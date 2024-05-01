@@ -1,5 +1,3 @@
-// Settings.tsx
-import React, { RefObject } from 'react';
 import { config } from '../config';
 
 interface SettingsProps {
@@ -11,7 +9,6 @@ interface SettingsProps {
   onInternetToggle: () => void;
   onPhotosToggle: () => void;
   onLudicrousModeToggle: () => void;
-  ref?: RefObject<HTMLDivElement>;
 }
 
 export const Settings: React.FC<SettingsProps> = ({
@@ -23,11 +20,11 @@ export const Settings: React.FC<SettingsProps> = ({
   onInternetToggle,
   onPhotosToggle,
   onLudicrousModeToggle,
-  ref,
-}) => {
+}, ref) => {
+
   return (
-    <div ref={ref} className="absolute bottom-24 left-7 bg-white rounded-md shadow-md p-4 animate-slide-up">
-      <div className="flex items-center mb-4">
+    <div className="absolute bottom-24 left-7 bg-white rounded-md shadow-md p-4 animate-slide-up">
+      <div className="flex items-center mb-1">
         <label htmlFor="ludicrous-mode-toggle" className="flex items-center cursor-pointer">
           <div className="relative">
             <input
@@ -43,9 +40,9 @@ export const Settings: React.FC<SettingsProps> = ({
           <div className="ml-3 text-sm">Ludicrous Mode</div>
         </label>
       </div>
-      <div className="text-xs text-gray-500 mb-4">(groq llama3 + groq whisper only)</div>
+      <div className="text-xs text-gray-500 mb-2">(groq llama3 + groq whisper only)</div>
       {config.enableTextToSpeechUIToggle && (
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-2">
           <label htmlFor="tts-toggle" className="flex items-center cursor-pointer">
             <div className={`relative`}>
               <input
@@ -63,7 +60,7 @@ export const Settings: React.FC<SettingsProps> = ({
         </div>
       )}
       {config.enableInternetResultsUIToggle && (
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-2">
           <label htmlFor="internet-toggle" className="flex items-center cursor-pointer">
             <div className="relative">
               <input

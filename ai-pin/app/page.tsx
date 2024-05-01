@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, forwardRef } from 'react';
 import { useActions, readStreamableValue } from 'ai/rsc';
 import { type AI } from './action';
 import { Settings } from './components/Settings';
@@ -11,6 +11,7 @@ import { WeatherData } from './components/tools/Weather';
 import { SpotifyTrack } from './components/tools/Spotify';
 import { ClockComponent } from './components/tools/Clock';
 import { config } from './config';
+
 interface Message {
   rateLimitReached: any;
   transcription?: string;
@@ -20,10 +21,12 @@ interface Message {
   spotify?: string;
   time?: string;
 }
+
 interface UIComponent {
   component: string;
   data: any;
 }
+
 const Main = () => {
   const { action } = useActions<typeof AI>();
   const [useTTS, setUseTTS] = useState(false);
@@ -36,29 +39,24 @@ const Main = () => {
   const [currentUIComponent, setCurrentUIComponent] = useState<UIComponent | null>(null);
   const [message, setMessage] = useState<{ message: string; responseTime: number } | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const settingsRef = useRef<HTMLDivElement>(null);
   const [showSettings, setShowSettings] = useState(false);
+
   const handleSettingsClick = () => {
     setShowSettings(!showSettings);
   };
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
-        setShowSettings(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+
+  const handleClickAway = () => {
+    setShowSettings(false);
+  };
 
   const handleTTSToggle = () => {
     setUseTTS(!useTTS);
   };
+
   const handleInternetToggle = () => {
     setUseInternet(!useInternet);
   };
+
   const handleLudicrousModeToggle = () => {
     setUseLudicrousMode(!useLudicrousMode);
   };
@@ -218,8 +216,8 @@ const Main = () => {
           onClick={handleSettingsClick}
         >
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/2/20/Factotum_gear_icon.svg"
-            alt="Settings"
+            src={showSettings ? "https://upload.wikimedia.org/wikipedia/commons/a/a0/OOjs_UI_icon_close.svg" : "https://upload.wikimedia.org/wikipedia/commons/2/20/Factotum_gear_icon.svg"}
+            alt={showSettings ? "Close Settings" : "Settings"}
             className="w-6 h-6"
           />
         </div>
@@ -234,9 +232,17 @@ const Main = () => {
           onTTSToggle={handleTTSToggle}
           onInternetToggle={handleInternetToggle}
           onPhotosToggle={() => setUsePhotos(!usePhotos)}
-          ref={settingsRef}
         />
       )}
+      <div className="absolute bottom-0 right-10 bottom-10 text-xs text-center">
+        <a href="https://groq.com" target="_blank">
+          <img
+            src="https://wow.groq.com/wp-content/uploads/2024/03/PBG-mark2-black.svg"
+            alt="GitHub"
+            className="h-10"
+          />
+        </a>
+      </div>
       {config.useAttributionComponent && (
         <AttributionComponent usePhotos={usePhotos} useInternet={useInternet} useTTS={useTTS} />
       )}

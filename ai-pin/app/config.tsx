@@ -16,7 +16,7 @@ export const config = {
     functionCallingModelProvider: 'openai', // 'openai' current only
     functionCallingModel: 'gpt-3.5-turbo', // OpenAI: 'gpt-3-5-turbo'
     // UI settings 
-    enableResponseTimes: true, // OPTIONAL: Display response times for each message
+    enableResponseTimes: false, // OPTIONAL: Display response times for each message
     enableSettingsUIToggle: true,
     enableTextToSpeechUIToggle: true,
     enableInternetResultsUIToggle: true,

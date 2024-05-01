@@ -90,7 +90,13 @@ const initialAIState: {
     name?: string;
 }[] = [];
 
+const initialUIState: {
+    text: string;
+    id?: string;
+}[] = [];
+
 export const AI = createAI({
     actions: { action },
     initialAIState,
+    initialUIState
 });

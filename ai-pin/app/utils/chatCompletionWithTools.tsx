@@ -102,33 +102,7 @@ export const chatCompletionWithTools = async (query: string) => {
                     data: time
                 }
             };
-        } else if (toolCalls[0].function.name === "getTicker") {
-            const { function: { arguments: argString } } = toolCalls[0];
-            const { symbol } = JSON.parse(argString);
-            const tickerData = await getTicker();
-            return {
-                uiComponent: {
-                    component: 'ticker',
-                    data: tickerData
-                }
-            };
-        } else if (toolCalls[0].function.name === "getLocations") {
-            const locationsData = await getLocations();
-            return {
-                uiComponent: {
-                    component: 'locations',
-                    data: locationsData
-                }
-            };
-        } else if (toolCalls[0].function.name === "getShopping") {
-            const shoppingData = await getShopping();
-            return {
-                uiComponent: {
-                    component: 'shopping',
-                    data: shoppingData
-                }
-            };
-        }
+        } 
     } else {
         return { message: res?.lc_kwargs?.content };
     }

@@ -143,3 +143,8 @@ body {
 
 
 /* clock */
+
+body {
+  overflow: hidden!important;
+  /* Hide scrollbars */
+}

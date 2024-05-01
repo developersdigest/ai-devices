@@ -1,26 +1,19 @@
-// InputComponent.tsx
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useDropzone, DropzoneOptions } from 'react-dropzone';
 
 interface InputComponentProps {
   onSubmit: (formData: FormData) => void;
   useTTS: boolean;
-  setUseTTS: (value: boolean) => void;
   useInternet: boolean;
-  setUseInternet: (value: boolean) => void;
   usePhotos: boolean;
-  setUsePhotos: (value: boolean) => void;
 }
 
 const InputComponent: React.FC<InputComponentProps> = ({
   onSubmit,
   useTTS,
-  setUseTTS,
   useInternet,
-  setUseInternet,
   usePhotos,
-  setUsePhotos,
 }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [recording, setRecording] = useState(false);
@@ -42,7 +35,6 @@ const InputComponent: React.FC<InputComponentProps> = ({
   const removeImage = () => {
     setSelectedImage(null);
   };
-
 
   const handleRecording = () => {
     if (recording) {

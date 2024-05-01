@@ -26,4 +26,4 @@ export const transcribeAudio = traceable(async (audioBlob: Blob, timestamp: numb
         console.error('Error transcribing audio:', error);
         return 'Error transcribing audio. Please try again later.';
     }
-}, { name: 'transcribeAudio'  });
+}, { name: 'transcribeAudio' });

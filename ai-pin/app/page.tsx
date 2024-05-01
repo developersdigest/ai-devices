@@ -1,17 +1,15 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useActions, readStreamableValue } from 'ai/rsc';
 import { type AI } from './action';
 import { Settings } from './components/Settings';
 import { AttributionComponent } from './components/AttributionComponent';
 import { MobileNotSupported } from './components/Mobile';
 import InputComponent from './components/InputComponent';
-
 // dynamic ui compoonents
 import { WeatherData } from './components/tools/Weather';
 import { SpotifyTrack } from './components/tools/Spotify';
 import { ClockComponent } from './components/tools/Clock';
-
 import { config } from './config';
 interface Message {
   rateLimitReached: any;
@@ -96,7 +94,6 @@ const Main = () => {
         const audio = new Audio(message.audio);
         audio.play();
       }
-
       if (message && message.spotify && typeof message.spotify === 'string') {
         setUseSpotify(message.spotify);
       }
@@ -113,6 +110,17 @@ const Main = () => {
     }
     setTotalResponseTime(totalResponseTime);
   };
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768; // Adjust the breakpoint as needed
+      setIsMobile(isMobileDevice);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile); // Check on window resize
+    return () => {
+      window.removeEventListener('resize', checkMobile); // Cleanup the event listener
+    };
+  }, []);
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {isMobile ? (
@@ -134,15 +142,11 @@ const Main = () => {
           <InputComponent
             onSubmit={handleSubmit}
             useTTS={useTTS}
-            setUseTTS={setUseTTS}
             useInternet={useInternet}
-            setUseInternet={setUseInternet}
             usePhotos={usePhotos}
-            setUsePhotos={setUsePhotos}
           />
           {currentTranscription && (
             <div className="absolute top-3/4 left-[30px] bottom-0 text-center min-w-[300px] max-w-[300px]">
-
               <p className="text-md text-gray-500">{currentTranscription.transcription} </p>
               {config.enableResponseTimes && (
                 <p className="text-xs text-gray-500">Transcription response time: +{currentTranscription.responseTime.toFixed(2)} seconds</p>
@@ -217,13 +221,6 @@ const Main = () => {
       {config.useAttributionComponent && (
         <AttributionComponent usePhotos={usePhotos} useInternet={useInternet} useTTS={useTTS} />
       )}
-      {/* <div className="absolute bottom-0 left-[50%] transform -translate-x-[50%] w-[50px]  flex items-center justify-center cursor-pointer">
-        <img
-          src="https://developersdigest.s3.amazonaws.com/mkbhd.png"
-          alt="MKBHD"
-          className="animate-scale-up"
-        />
-      </div> */}
     </div>
   );
 };

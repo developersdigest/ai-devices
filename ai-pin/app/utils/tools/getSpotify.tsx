@@ -1,8 +1,8 @@
 import { SpotifyApi } from "@spotify/web-api-ts-sdk";
 
 const api = SpotifyApi.withClientCredentials(
-    "907ed817290a4dcdb124f824263de429",
-    "0a23b2dd4fdf4779b4d389e44075a718"
+    process.env.SPOTIFY_CLIENT_ID as string,
+    process.env.SPOTIFY_CLIENT_SECRET as string
 );
 
 export async function searchSong(query: string): Promise<string> {

@@ -1,4 +1,4 @@
-// Settings.tsx\
+// Settings.tsx
 import React, { RefObject } from 'react';
 import { config } from '../config';
 
@@ -6,23 +6,44 @@ interface SettingsProps {
   useTTS: boolean;
   useInternet: boolean;
   usePhotos: boolean;
+  useLudicrousMode: boolean;
   onTTSToggle: () => void;
   onInternetToggle: () => void;
   onPhotosToggle: () => void;
-  ref?: RefObject<HTMLDivElement>; // Add this line
+  onLudicrousModeToggle: () => void;
+  ref?: RefObject<HTMLDivElement>;
 }
 
 export const Settings: React.FC<SettingsProps> = ({
   useTTS,
   useInternet,
   usePhotos,
+  useLudicrousMode,
   onTTSToggle,
   onInternetToggle,
   onPhotosToggle,
+  onLudicrousModeToggle,
   ref,
 }) => {
   return (
     <div ref={ref} className="absolute bottom-24 left-7 bg-white rounded-md shadow-md p-4 animate-slide-up">
+      <div className="flex items-center mb-4">
+        <label htmlFor="ludicrous-mode-toggle" className="flex items-center cursor-pointer">
+          <div className="relative">
+            <input
+              type="checkbox"
+              id="ludicrous-mode-toggle"
+              className="sr-only"
+              checked={useLudicrousMode}
+              onChange={onLudicrousModeToggle}
+            />
+            <div className={`block w-10 h-6 rounded-full ${useLudicrousMode ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+            <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${useLudicrousMode ? 'transform translate-x-full' : ''}`}></div>
+          </div>
+          <div className="ml-3 text-sm">Ludicrous Mode</div>
+        </label>
+      </div>
+      <div className="text-xs text-gray-500 mb-4">(groq llama3 + groq whisper only)</div>
       {config.enableTextToSpeechUIToggle && (
         <div className="flex items-center mb-4">
           <label htmlFor="tts-toggle" className="flex items-center cursor-pointer">
@@ -80,4 +101,3 @@ export const Settings: React.FC<SettingsProps> = ({
     </div>
   );
 };
-

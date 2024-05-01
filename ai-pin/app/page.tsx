@@ -28,6 +28,7 @@ const Main = () => {
   const { action } = useActions<typeof AI>();
   const [useTTS, setUseTTS] = useState(false);
   const [useInternet, setUseInternet] = useState(false);
+  const [useLudicrousMode, setUseLudicrousMode] = useState(false);
   const [usePhotos, setUsePhotos] = useState(false);
   const [useSpotify, setUseSpotify] = useState('');
   const [currentTranscription, setCurrentTranscription] = useState<{ transcription: string, responseTime: number } | null>(null);
@@ -40,11 +41,26 @@ const Main = () => {
   const handleSettingsClick = () => {
     setShowSettings(!showSettings);
   };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
+        setShowSettings(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const handleTTSToggle = () => {
     setUseTTS(!useTTS);
   };
   const handleInternetToggle = () => {
     setUseInternet(!useInternet);
+  };
+  const handleLudicrousModeToggle = () => {
+    setUseLudicrousMode(!useLudicrousMode);
   };
   const handleSubmit = async (formData: FormData) => {
     const startTime = Date.now();
@@ -144,6 +160,7 @@ const Main = () => {
             useTTS={useTTS}
             useInternet={useInternet}
             usePhotos={usePhotos}
+            useLudicrousMode={useLudicrousMode}
           />
           {currentTranscription && (
             <div className="absolute top-3/4 left-[30px] bottom-0 text-center min-w-[300px] max-w-[300px]">
@@ -212,6 +229,8 @@ const Main = () => {
           useTTS={useTTS}
           useInternet={useInternet}
           usePhotos={usePhotos}
+          useLudicrousMode={useLudicrousMode}
+          onLudicrousModeToggle={handleLudicrousModeToggle}
           onTTSToggle={handleTTSToggle}
           onInternetToggle={handleInternetToggle}
           onPhotosToggle={() => setUsePhotos(!usePhotos)}

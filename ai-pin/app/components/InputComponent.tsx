@@ -7,6 +7,7 @@ interface InputComponentProps {
   useTTS: boolean;
   useInternet: boolean;
   usePhotos: boolean;
+  useLudicrousMode: boolean;
 }
 
 const InputComponent: React.FC<InputComponentProps> = ({
@@ -14,6 +15,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
   useTTS,
   useInternet,
   usePhotos,
+  useLudicrousMode,
 }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [recording, setRecording] = useState(false);
@@ -66,6 +68,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
         formData.append('useTTS', String(useTTS));
         formData.append('useInternet', String(useInternet));
         formData.append('usePhotos', String(usePhotos));
+        formData.append('useLudicrousMode', String(useLudicrousMode));
         if (selectedImage) {
           formData.append('image', selectedImage, selectedImage.name);
         }

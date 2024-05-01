@@ -31,6 +31,7 @@ async function action(obj: FormData): Promise<any> {
         const useTTS = formData.get('useTTS') === 'true';
         const useInternet = formData.get('useInternet') === 'true';
         const usePhotos = formData.get('usePhotos') === 'true';
+        const useLudicrousMode = formData.get('useLudicrousMode') === 'true';
         if (!(audioBlob instanceof Blob)) throw new Error('No audio detected');
 
         const timestamp = Date.now();
@@ -38,41 +39,48 @@ async function action(obj: FormData): Promise<any> {
         streamable.update({ 'transcription': transcription });
 
         let responseText = '';
-        if (usePhotos) {
-            const image = formData.get('image');
-            if (image instanceof File) {
-                if (config.visionModelProvider === 'fal.ai') {
-                    responseText = await processImageWithLllavaOnFalAI(image, transcription);
-                } else {
-                    responseText = await processImageWithGPT4V(image, transcription);
-                }
-            } else {
-                responseText = 'You might have forgotten to upload an image';
-            }
-        } else {
-            let result;
-            if (useInternet) {
-                result = await answerEngine(transcription);
-            } else {
-                result = await generateChatCompletion(transcription);
-            }
-
+        if (useLudicrousMode) {
+            const result = await generateChatCompletion(transcription);
             if (result !== undefined) {
                 responseText = result;
             }
-
-            const tool_results = await chatCompletionWithTools(responseText);
-            if (tool_results?.uiComponent) {
-                if (tool_results.uiComponent.component === 'weather') {
-                    streamable.update({ 'weather': tool_results.uiComponent.data });
-                } else if (tool_results.uiComponent.component === 'spotify') {
-                    streamable.update({ 'spotify': tool_results.uiComponent.data });
-                } else if (tool_results.uiComponent.component === 'time') {
-                    responseText = tool_results.uiComponent.data;
-                    streamable.update({ 'time': tool_results.uiComponent.data });
+        } else {
+            if (usePhotos) {
+                const image = formData.get('image');
+                if (image instanceof File) {
+                    if (config.visionModelProvider === 'fal.ai') {
+                        responseText = await processImageWithLllavaOnFalAI(image, transcription);
+                    } else {
+                        responseText = await processImageWithGPT4V(image, transcription);
+                    }
+                } else {
+                    responseText = 'You might have forgotten to upload an image';
                 }
             } else {
-                streamable.update({ 'message': tool_results?.message });
+                let result;
+                if (useInternet) {
+                    result = await answerEngine(transcription);
+                } else {
+                    result = await generateChatCompletion(transcription);
+                }
+
+                if (result !== undefined) {
+                    responseText = result;
+                }
+
+                const tool_results = await chatCompletionWithTools(responseText);
+                if (tool_results?.uiComponent) {
+                    if (tool_results.uiComponent.component === 'weather') {
+                        streamable.update({ 'weather': tool_results.uiComponent.data });
+                    } else if (tool_results.uiComponent.component === 'spotify') {
+                        streamable.update({ 'spotify': tool_results.uiComponent.data });
+                    } else if (tool_results.uiComponent.component === 'time') {
+                        responseText = tool_results.uiComponent.data;
+                        streamable.update({ 'time': tool_results.uiComponent.data });
+                    }
+                } else {
+                    streamable.update({ 'message': tool_results?.message });
+                }
             }
         }
 

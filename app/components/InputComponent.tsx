@@ -84,7 +84,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
         <img
           src="https://developersdigest.s3.amazonaws.com/pin.png"
           alt="Second"
-          className={`w-full ${recording ? '' : ''} prevent-iamge-drag `}
+          className={`w-full ${recording ? '' : ''} prevent-image-drag cursor-pointer`}
           onMouseDown={handleRecording}
           onMouseUp={handleRecording}
           onTouchStart={handleRecording}

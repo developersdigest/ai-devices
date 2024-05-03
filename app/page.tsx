@@ -153,7 +153,7 @@ const Main = () => {
             <div className="flex flex-col items-center w-full px-4 relative">
               <div className="w-1/2 max-w-[700px] self-center absolute top-[200px] right-0">
                 <img
-                  className="animate-slide-in-right w-full min-w-[700px]"
+                  className="animate-slide-in-right w-full min-w-[700px] prevent-image-drag"
                   src="https://developersdigest.s3.amazonaws.com/hand-1.png"
                   alt="Hand"
                 />

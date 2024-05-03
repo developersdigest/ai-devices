@@ -29,8 +29,7 @@ body {
   }
 }
 
-.prevent-iamge-drag {
-  cursor: pointer;
+.prevent-image-drag {
   user-drag: none;
   -webkit-user-drag: none;
   user-select: none;
@@ -38,7 +37,6 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
-
 
 @keyframes slideInRight {
   0% {

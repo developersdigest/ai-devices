@@ -36,9 +36,6 @@ export const answerEngine = traceable(async (query: string) => {
             const docs = await response.json();
             return docs;
         } catch (error) {
-            if (error.message === 'Forbidden') {
-                return null;
-            }
             throw error;
         }
     }

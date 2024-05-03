@@ -21,7 +21,7 @@ import { processImageWithGPT4V, processImageWithLllavaOnFalAI } from './utils/pr
 import { generateChatCompletion } from './utils/generateChatCompletion';
 import { answerEngine } from './utils/answerEngine';
 import { chatCompletionWithTools } from './utils/chatCompletionWithTools';
-import { initializeRateLimit, checkRateLimit } from './utils/z-optional-rateLimiting';
+import { initializeRateLimit, checkRateLimit } from './utils/rateLimiting';
 
 async function action(obj: FormData): Promise<any> {
     "use server";

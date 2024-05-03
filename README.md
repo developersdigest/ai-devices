@@ -1,4 +1,4 @@
-<h1 align="center">AI Enabled Voice Assistant</h1>
+<h1 align="center">AI Enabled Voice Assistant Device Template - Whisper on Groq</h1>
 <div>
     <div align="center">
         <a href="https://twitter.com/dev__digest">

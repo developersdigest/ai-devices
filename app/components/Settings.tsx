@@ -9,6 +9,9 @@ interface SettingsProps {
   onInternetToggle: () => void;
   onPhotosToggle: () => void;
   onLudicrousModeToggle: () => void;
+  setTTS: (useTTS: boolean) => void;
+  setInternet: (useInternet: boolean) => void;
+  setPhotos: (usePhotos: boolean) => void;
 }
 
 export const Settings: React.FC<SettingsProps> = ({
@@ -20,7 +23,18 @@ export const Settings: React.FC<SettingsProps> = ({
   onInternetToggle,
   onPhotosToggle,
   onLudicrousModeToggle,
-}, ref) => {
+  setTTS,
+  setInternet,
+  setPhotos,
+}) => {
+  const handleLudicrousModeToggle = () => {
+    onLudicrousModeToggle();
+    if (!useLudicrousMode) {
+      setTTS(false);
+      setInternet(false);
+      setPhotos(false);
+    }
+  };
 
   return (
     <div className="absolute bottom-24 left-7 bg-white rounded-md shadow-md p-4 animate-slide-up">
@@ -32,7 +46,7 @@ export const Settings: React.FC<SettingsProps> = ({
               id="ludicrous-mode-toggle"
               className="sr-only"
               checked={useLudicrousMode}
-              onChange={onLudicrousModeToggle}
+              onChange={handleLudicrousModeToggle}
             />
             <div className={`block w-10 h-6 rounded-full ${useLudicrousMode ? 'bg-green-500' : 'bg-gray-300'}`}></div>
             <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${useLudicrousMode ? 'transform translate-x-full' : ''}`}></div>
@@ -44,16 +58,17 @@ export const Settings: React.FC<SettingsProps> = ({
       {config.enableTextToSpeechUIToggle && (
         <div className="flex items-center mb-2">
           <label htmlFor="tts-toggle" className="flex items-center cursor-pointer">
-            <div className={`relative`}>
+            <div className={`relative ${useLudicrousMode ? 'opacity-50 cursor-not-allowed' : ''}`}>
               <input
                 type="checkbox"
                 id="tts-toggle"
                 className="sr-only"
-                checked={useTTS}
+                checked={useTTS && !useLudicrousMode}
                 onChange={onTTSToggle}
+                disabled={useLudicrousMode}
               />
-              <div className={`block w-10 h-6 rounded-full ${useTTS ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${useTTS ? 'transform translate-x-full' : ''}`}></div>
+              <div className={`block w-10 h-6 rounded-full ${useTTS && !useLudicrousMode ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${useTTS && !useLudicrousMode ? 'transform translate-x-full' : ''}`}></div>
             </div>
             <div className="ml-3 text-sm">Text-to-Speech</div>
           </label>
@@ -62,34 +77,36 @@ export const Settings: React.FC<SettingsProps> = ({
       {config.enableInternetResultsUIToggle && (
         <div className="flex items-center mb-2">
           <label htmlFor="internet-toggle" className="flex items-center cursor-pointer">
-            <div className="relative">
+            <div className={`relative ${useLudicrousMode ? 'opacity-50 cursor-not-allowed' : ''}`}>
               <input
                 type="checkbox"
                 id="internet-toggle"
                 className="sr-only"
-                checked={useInternet}
+                checked={useInternet && !useLudicrousMode}
                 onChange={onInternetToggle}
+                disabled={useLudicrousMode}
               />
-              <div className={`block w-10 h-6 rounded-full ${useInternet ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${useInternet ? 'transform translate-x-full' : ''}`}></div>
+              <div className={`block w-10 h-6 rounded-full ${useInternet && !useLudicrousMode ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${useInternet && !useLudicrousMode ? 'transform translate-x-full' : ''}`}></div>
             </div>
             <div className="ml-3 text-sm">Use Internet Results</div>
           </label>
         </div>
       )}
       {config.enableUsePhotUIToggle && (
-        <div className="flex items-center cursor-not-allowed">
+        <div className="flex items-center">
           <label htmlFor="photos-toggle" className="flex items-center cursor-pointer">
-            <div className="relative">
+            <div className={`relative ${useLudicrousMode ? 'opacity-50 cursor-not-allowed' : ''}`}>
               <input
                 type="checkbox"
                 id="photos-toggle"
                 className="sr-only"
-                checked={usePhotos}
+                checked={usePhotos && !useLudicrousMode}
                 onChange={onPhotosToggle}
+                disabled={useLudicrousMode}
               />
-              <div className={`block w-10 h-6 rounded-full ${usePhotos ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${usePhotos ? 'transform translate-x-full' : ''}`}></div>
+              <div className={`block w-10 h-6 rounded-full ${usePhotos && !useLudicrousMode ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${usePhotos && !useLudicrousMode ? 'transform translate-x-full' : ''}`}></div>
             </div>
             <div className="ml-3 text-sm">Use Photos</div>
           </label>

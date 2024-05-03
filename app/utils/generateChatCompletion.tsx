@@ -20,7 +20,7 @@ export const generateChatCompletion = traceable(async (responseText: string) => 
     } else if (config.inferenceModelProvider === 'groq') {
         completion = await groq.chat.completions.create({
             messages: [
-                { role: "system", content: "You are a helpful assistant and only responds in one sentence." },
+                { role: "system", content: "You are a helpful assistant and only responds in one sentence. If you don't know thw answer, rephrase the question that will be passed to the next model." },
                 { role: "user", content: responseText },
             ],
             model: config.inferenceModel,

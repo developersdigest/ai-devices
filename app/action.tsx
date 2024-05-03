@@ -3,14 +3,18 @@ import { createAI, createStreamableValue, createStreamableUI } from 'ai/rsc';
 import { config } from './config';
 import dotenv from 'dotenv';
 dotenv.config();
+// Rate limiting
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { headers } from 'next/headers'
 let ratelimit: Ratelimit | undefined;
-ratelimit = new Ratelimit({
-    redis: Redis.fromEnv(),
-    limiter: Ratelimit.slidingWindow(250, "1 h")
-});
+if (config.useRateLimiting) {
+    ratelimit = new Ratelimit({
+        redis: Redis.fromEnv(),
+        limiter: Ratelimit.slidingWindow(10, "10 m") // 10 requests per 10 minutes
+    });
+}
+// Rate limiting
 import { transcribeAudio } from './utils/transcribeAudio';
 import { generateTTS } from './utils/generateTTS';
 import { processImageWithGPT4V, processImageWithLllavaOnFalAI } from './utils/processImage';
@@ -23,9 +27,11 @@ async function action(obj: FormData): Promise<any> {
     "use server";
     const streamable = createStreamableValue();
     (async () => {
-        const identifier = headers().get('x-forwarded-for') || headers().get('x-real-ip') || headers().get('cf-connecting-ip') || headers().get('client-ip') || "";
-        initializeRateLimit();
-        if (!await checkRateLimit(identifier)) return streamable.done({ 'result': 'Rate Limit Reached. Please try again later.' });
+        if (config.useRateLimiting) {
+            const identifier = headers().get('x-forwarded-for') || headers().get('x-real-ip') || headers().get('cf-connecting-ip') || headers().get('client-ip') || "";
+            initializeRateLimit();
+            if (!await checkRateLimit(identifier)) return streamable.done({ 'result': 'Rate Limit Reached. Please try again later.' });
+        }
         const formData = obj;
         const audioBlob = formData.get('audio');
         const useTTS = formData.get('useTTS') === 'true';

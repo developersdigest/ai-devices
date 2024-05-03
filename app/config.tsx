@@ -11,7 +11,7 @@ export const config = {
     ttsvoice: 'alloy', // only openai supported for now... [alloy, echo, fable, onyx, nova, and shimmer]
     // Vision settings 
     visionModelProvider: 'openai', // 'openai' or 'fal.ai'
-    visionModel: 'gpt-4-vision-preview', // OpenAI: 'gpt-4-vision-preview' Fal.ai: 'llava-next'
+    visionModel: 'gpt-4-vision', // OpenAI: 'gpt-4-vision' Fal.ai: 'llava-next'
     // Function calling + conditionally rendered UI
     functionCallingModelProvider: 'openai', // 'openai' current only
     functionCallingModel: 'gpt-3.5-turbo', // OpenAI: 'gpt-3-5-turbo'

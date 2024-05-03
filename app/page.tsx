@@ -29,9 +29,9 @@ interface UIComponent {
 
 const Main = () => {
   const { action } = useActions<typeof AI>();
+  const [useLudicrousMode, setUseLudicrousMode] = useState(true);
   const [useTTS, setUseTTS] = useState(false);
   const [useInternet, setUseInternet] = useState(false);
-  const [useLudicrousMode, setUseLudicrousMode] = useState(false);
   const [usePhotos, setUsePhotos] = useState(false);
   const [useSpotify, setUseSpotify] = useState('');
   const [currentTranscription, setCurrentTranscription] = useState<{ transcription: string, responseTime: number } | null>(null);
@@ -43,10 +43,6 @@ const Main = () => {
 
   const handleSettingsClick = () => {
     setShowSettings(!showSettings);
-  };
-
-  const handleClickAway = () => {
-    setShowSettings(false);
   };
 
   const handleTTSToggle = () => {
@@ -71,37 +67,22 @@ const Main = () => {
     setMessage(null);
     for await (const message of readStreamableValue<Message>(streamableValue)) {
       if (message && message.rateLimitReached && typeof message.rateLimitReached === 'string') {
-        setMessage({
-          message: message.rateLimitReached,
-          responseTime: 0
-        });
+        setMessage({ message: message.rateLimitReached, responseTime: 0 });
       }
       if (message && message.time && typeof message.time === 'string') {
-        setCurrentUIComponent({
-          component: 'time',
-          data: message.time
-        });
+        setCurrentUIComponent({ component: 'time', data: message.time });
       }
       if (message && message.transcription && typeof message.transcription === 'string') {
         transcriptionResponseTime = (Date.now() - startTime) / 1000;
         transcriptionCompletionTime = Date.now();
-        setCurrentTranscription({
-          transcription: message.transcription,
-          responseTime: transcriptionResponseTime
-        });
+        setCurrentTranscription({ transcription: message.transcription, responseTime: transcriptionResponseTime });
       }
       if (message && message.weather && typeof message.weather === 'string') {
-        setCurrentUIComponent({
-          component: 'weather',
-          data: JSON.parse(message.weather)
-        });
+        setCurrentUIComponent({ component: 'weather', data: JSON.parse(message.weather) });
       }
       if (message && message.result && typeof message.result === 'string') {
         messageResponseTime = (Date.now() - (transcriptionCompletionTime || startTime)) / 1000;
-        setMessage({
-          message: message.result,
-          responseTime: messageResponseTime
-        });
+        setMessage({ message: message.result, responseTime: messageResponseTime });
       }
       if (message && message.audio && typeof message.audio === 'string') {
         audioResponseTime = (Date.now() - (transcriptionCompletionTime || startTime)) / 1000;
@@ -232,6 +213,9 @@ const Main = () => {
           onTTSToggle={handleTTSToggle}
           onInternetToggle={handleInternetToggle}
           onPhotosToggle={() => setUsePhotos(!usePhotos)}
+          setTTS={setUseTTS}
+          setInternet={setUseInternet}
+          setPhotos={setUsePhotos}
         />
       )}
       <div className="absolute bottom-0 right-10 bottom-10 text-xs text-center">

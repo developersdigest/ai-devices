@@ -10,7 +10,7 @@
     </div>
 </div>
 
-This project is an AI-powered voice assistant utilizing various AI models and services to provide intelligent responses to user queries. It supports voice input, transcription, text-to-speech, image processing, and function calling with conditionally rendered UI components. This was inspired by the recent trend of 'AI Devices' such as the Humane AI Pin and the Rabbit R1. 
+This project is an AI-powered voice assistant utilizing various AI models and services to provide intelligent responses to user queries. It supports voice input, transcription, text-to-speech, image processing, and function calling with conditionally rendered UI components. This was inspired by the recent trend of AI Devices such as the Humane AI Pin and the Rabbit R1. 
 
 ## Features
 
@@ -24,19 +24,36 @@ This project is an AI-powered voice assistant utilizing various AI models and se
 
 ## Setup
 
-### Clone the repository
+### 1. Clone the repository
 ```bash
 git clone https://github.com/developersdigest/ai-pin.git
 ```
 
-### Install dependencies
+### 2. Install dependencies
 ```bash
 npm install 
 # or
 bun install
 ```
 
-### Start the development server
+## 3. Add API Keys
+
+To use this AI-powered voice assistant, you need to provide the necessary API keys for the selected AI models and services. 
+
+### Required for core functionality
+- **Groq API Key** for ludicrous mode operations
+- **OpenAI API Key** for TTS and Vision
+
+### Optional for advanced configuration
+- **Serper API Key** for Internet Results 
+- **Langchain Tracing** for function execution tracing
+- **Upstash Redis** for IP-based rate limiting
+- **Spotify** for Spotify API interactions
+- **Fal.AI (Lllava Image Model)** for advanced image processing tasks
+
+Replace 'API_KEY_GOES_HERE' with your actual API keys for each service.
+
+### 4. Start the development server
 ```bash
 npm run dev
 # or
@@ -44,6 +61,10 @@ bun dev
 ```
 
 Access the application at `http://localhost:3000` or through the provided URL.
+
+### 5. Deployment
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/developersdigests-projects/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdevelopersdigest%2Fai-pin&env=GROQ_API_KEY&env=OPENAI_API_KEY&project-name=ai-pin&repository-name=ai-pin)
 
 ## Configuration
 
@@ -55,23 +76,6 @@ export const config = {
 };
 ```
 
-## API Keys
-
-To use this AI-powered voice assistant, you need to provide the necessary API keys for the selected AI models and services. 
-
-### Required for base configuration
-- **Groq API Key** for ludicrous mode operations
-- **OpenAI API Key** for TTS and Vision
-- **Serper API Key** for Internet Results
-
-### Optional for advanced configuration
-- **Langchain Tracing** for function execution tracing
-- **Upstash Redis** for IP-based rate limiting
-- **Spotify** for Spotify API interactions
-- **Fal.AI (Lllava Image Model)** for advanced image processing tasks
-
-Replace 'API_KEY_GOES_HERE' with your actual API keys for each service.
-
 ## Usage
 
 1. Clone the repository and navigate to the project directory.
@@ -79,10 +83,6 @@ Replace 'API_KEY_GOES_HERE' with your actual API keys for each service.
 3. Configure the desired settings in `config.tsx`.
 4. Run the application with `npm run dev or bun dev`.
 5. Access the voice assistant via the provided URL or localhost.
-
-## Vercel Deployment
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/developersdigests-projects/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdevelopersdigest%2Fai-pin&env=GROQ_API_KEY&env=OPENAI_API_KEY&project-name=ai-pin&repository-name=ai-pin)
 
 ## Contributing
 

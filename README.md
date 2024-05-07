@@ -9,7 +9,14 @@
         </a>
     </div>
 </div>
+<div style="display: flex; justify-content: center; align-items: center;">
+    <a href="https://youtu.be/43ZCeBTcsS81">
+        <img src="https://img.youtube.com/vi/43ZCeBTcsS81/0.jpg" alt="Tutorial 2" style="width: 100%; height: auto;">
+    </a>
 
+</div>
+![Example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExejdnZzlzaXRuN3A3ZzdrNnIwamdqMWU2aTFwcHExZHh5Zm4xaGloeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GIcUHNXLsv0pEHHQ2i/giphy.gif)
+![Example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmV0bjdkYzNpcDNka3BoaTFoNDJ3MTl0c3dmN3pqZGdjanh6N3c2YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UjkWj9Q6yInxQHp1tY/giphy.gif)
 This project is an AI-powered voice assistant utilizing various AI models and services to provide intelligent responses to user queries. It supports voice input, transcription, text-to-speech, image processing, and function calling with conditionally rendered UI components. This was inspired by the recent trend of AI Devices such as the Humane AI Pin and the Rabbit R1. 
 
 ## Features

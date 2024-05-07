@@ -12,10 +12,10 @@
 <div style="display: flex; justify-content: center; align-items: left; width: 100%;" >
     <div align="center" style="width:100%"> 
         <a href="https://www.youtube.com/@developersdigest" >
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmV0bjdkYzNpcDNka3BoaTFoNDJ3MTl0c3dmN3pqZGdjanh6N3c2YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UjkWj9Q6yInxQHp1tY/giphy.gif" style="width: 40%; height: auto;"/>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmV0bjdkYzNpcDNka3BoaTFoNDJ3MTl0c3dmN3pqZGdjanh6N3c2YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UjkWj9Q6yInxQHp1tY/giphy.gif" style="width: 100%; height: auto;"/>
         </a>
         <a href="https://twitter.com/dev__digest" >
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzZtaTB5eHVzcjlnaHQ5b2c5OGJqeG9kcTk3N3V4eG5xY25mdHlpayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GIcUHNXLsv0pEHHQ2i/giphy.gif" style="width: 40%; height: auto;" />
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzZtaTB5eHVzcjlnaHQ5b2c5OGJqeG9kcTk3N3V4eG5xY25mdHlpayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GIcUHNXLsv0pEHHQ2i/giphy.gif" style="width: 100%; height: auto;" />
         </a>
     </div>
 </div>

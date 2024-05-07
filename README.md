@@ -20,6 +20,13 @@
     </div>
 </div>
 
+<h2 align="center">YouTube Tutorial</h2>
+
+<div style="display: flex; justify-content: center; align-items: left;">
+    <a href="https://youtu.be/CXDFGyO2FUI">
+        <img src="https://img.youtube.com/vi/CXDFGyO2FUI/0.jpg" alt="Tutorial 2" style="width: 100%; height: auto;">
+    </a>
+</div>
 
 This project is an AI-powered voice assistant utilizing various AI models and services to provide intelligent responses to user queries. It supports voice input, transcription, text-to-speech, image processing, and function calling with conditionally rendered UI components. This was inspired by the recent trend of AI Devices such as the Humane AI Pin and the Rabbit R1. 
 
@@ -122,14 +129,14 @@ export const config = {
 };
 ```
 
-## Usage
-
-1. Clone the repository and navigate to the project directory.
-2. Set up your API keys in the environment variables.
-3. Configure the desired settings in `config.tsx`.
-4. Run the application with `npm run dev or bun dev`.
-5. Access the voice assistant via the provided URL or localhost.
-
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+I'm the developer behind Developers Digest. If you find my work helpful or enjoy what I do, consider supporting me. Here are a few ways you can do that:
+
+- **Patreon**: Support me on Patreon at [patreon.com/DevelopersDigest](https://www.patreon.com/DevelopersDigest)
+- **Buy Me A Coffee**: You can buy me a coffee at [buymeacoffee.com/developersdigest](https://www.buymeacoffee.com/developersdigest)
+- **Website**: Check out my website at [developersdigest.tech](https://developersdigest.tech)
+- **Github**: Follow me on GitHub at [github.com/developersdigest](https://github.com/developersdigest)
+- **Twitter**: Follow me on Twitter at [twitter.com/dev__digest](https://twitter.com/dev__digest)

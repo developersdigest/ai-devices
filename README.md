@@ -1,4 +1,4 @@
-<h1 align="center">AI Enabled Voice Assistant Device Template - Whisper on Groq</h1>
+<h1 align="center">AI Enabled Assistant Device Template - Inspired By Humane AI Pin and Rabbit R1</h1>
 <div>
     <div align="center">
         <a href="https://twitter.com/dev__digest">
@@ -41,15 +41,15 @@ bun install
 To use this AI-powered voice assistant, you need to provide the necessary API keys for the selected AI models and services. 
 
 ### Required for core functionality
-- **Groq API Key** for ludicrous mode operations
-- **OpenAI API Key** for TTS and Vision
+- **Groq API Key** For Llama + Whisper
+- **OpenAI API Key** for TTS and Vision + Whisper
+- **Serper API Key** for Internet Results 
 
 ### Optional for advanced configuration
-- **Serper API Key** for Internet Results 
 - **Langchain Tracing** for function execution tracing
 - **Upstash Redis** for IP-based rate limiting
 - **Spotify** for Spotify API interactions
-- **Fal.AI (Lllava Image Model)** for advanced image processing tasks
+- **Fal.AI (Lllava Image Model)** Alternative vision model to GPT-4-Vision
 
 Replace 'API_KEY_GOES_HERE' with your actual API keys for each service.
 
@@ -79,8 +79,8 @@ export const config = {
     // BELOW OPTIONAL are some options for the app to use
     
     // Whisper settings
-    whisperModelProvider: 'groq', // 'groq' or 'openai'
-    whisperModel: 'whisper-large-v3', // Groq: 'whisper-large-v3' OpenAI: 'whisper-1'
+    whisperModelProvider: 'openai', // 'groq' or 'openai'
+    whisperModel: 'whisper-1', // Groq: 'whisper-large-v3' OpenAI: 'whisper-1'
 
     // TTS settings
     ttsModelProvider: 'openai', // only openai supported for now...

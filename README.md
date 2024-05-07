@@ -1,4 +1,4 @@
-<h1 align="center">AI Enabled Assistant Device Template - Inspired By Humane AI Pin and Rabbit R1</h1>
+<h1 align="center">AI Device Template - Inspired By Humane AI Pin and Rabbit R1</h1>
 <div>
     <div align="center">
         <a href="https://twitter.com/dev__digest">

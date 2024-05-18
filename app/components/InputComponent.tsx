@@ -112,7 +112,7 @@ const InputComponent: React.FC<InputComponentProps> = ({
           </div>
         )}
         {usePhotos && (
-          <div className={`absolute ${useRabbitMode? '-top-[220px]': '-top-[200px] right-0'} left-0  flex flex-col items-center min-w-[300px]`}>
+          <div className={`absolute ${useRabbitMode? '-top-[230px]': '-top-[200px] right-0'} left-0  flex flex-col items-center min-w-[300px]`}>
             <div
               {...getRootProps()}
               className={`w-full h-40 border-2 border-dashed ${isDragActive ? 'border-blue-500' : 'border-gray-400'

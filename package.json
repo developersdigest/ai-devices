@@ -13,6 +13,7 @@
     "@fal-ai/serverless-client": "^0.9.3",
     "@fal-ai/serverless-proxy": "^0.7.4",
     "@langchain/community": "^0.0.52",
+    "@langchain/google-genai": "^0.0.13",
     "@langchain/groq": "^0.0.8",
     "@langchain/openai": "^0.0.28",
     "@spotify/web-api-ts-sdk": "^1.2.0",

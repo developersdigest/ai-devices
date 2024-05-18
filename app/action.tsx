@@ -15,9 +15,9 @@ if (config.useRateLimiting) {
     });
 }
 // Rate limiting
-import { transcribeAudio } from './utils/transcribeAudio';
+import { transcribeAudio } from './utils/transcribeAudio'; 
 import { generateTTS } from './utils/generateTTS';
-import { processImageWithGPT4V, processImageWithLllavaOnFalAI } from './utils/processImage';
+import { processImageWithGPT4o, processImageWithLllavaOnFalAI, processImageWithGoogleGenerativeAI } from './utils/processImage';
 import { generateChatCompletion } from './utils/generateChatCompletion';
 import { answerEngine } from './utils/answerEngine';
 import { chatCompletionWithTools } from './utils/chatCompletionWithTools';
@@ -26,7 +26,7 @@ import { initializeRateLimit, checkRateLimit } from './utils/rateLimiting';
 async function action(obj: FormData): Promise<any> {
     "use server";
     const streamable = createStreamableValue();
-    (async () => {
+    (async () => { 
         if (config.useRateLimiting) {
             const identifier = headers().get('x-forwarded-for') || headers().get('x-real-ip') || headers().get('cf-connecting-ip') || headers().get('client-ip') || "";
             initializeRateLimit();
@@ -56,8 +56,10 @@ async function action(obj: FormData): Promise<any> {
                 if (image instanceof File) {
                     if (config.visionModelProvider === 'fal.ai') {
                         responseText = await processImageWithLllavaOnFalAI(image, transcription);
+                    } else if (config.visionModelProvider === 'google') {
+                        responseText = await processImageWithGoogleGenerativeAI(image, transcription);
                     } else {
-                        responseText = await processImageWithGPT4V(image, transcription);
+                        responseText = await processImageWithGPT4o(image, transcription);
                     }
                 } else {
                     responseText = 'You might have forgotten to upload an image';

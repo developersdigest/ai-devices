@@ -9,6 +9,7 @@
         </a>
     </div>
 </div>
+<h2 style="display: flex; justify-content: center; align-items: left; width: 100%;">Now supports gpt-4o and gemini-1.5-flash-latest for Vision Inference</h2>
 <div style="display: flex; justify-content: center; align-items: left; width: 100%;" >
     <div align="center" style="width:100%"> 
         <a href="https://www.youtube.com/@developersdigest" >
@@ -106,10 +107,10 @@ export const config = {
     ttsvoice: 'alloy', // only openai supported for now... [alloy, echo, fable, onyx, nova, and shimmer]
 
     // OPTIONAL:Vision settings 
-    visionModelProvider: 'openai', // 'openai' or 'fal.ai'
-    visionModel: 'gpt-4-vision', // OpenAI: 'gpt-4-vision' Fal.ai: 'llava-next'
+    visionModelProvider: 'google', // 'openai' or 'fal.ai' or 'google'
+    visionModel: 'gemini-1.5-flash-latest', // OpenAI: 'gpt-4o' or  Fal.ai: 'llava-next' or  Google: 'gemini-1.5-flash-latest'
 
-    // Function calling + conditionally rendered UI
+    // Function calling + conditionally rendered UI 
     functionCallingModelProvider: 'openai', // 'openai' current only
     functionCallingModel: 'gpt-3.5-turbo', // OpenAI: 'gpt-3-5-turbo'
 
@@ -119,7 +120,9 @@ export const config = {
     enableTextToSpeechUIToggle: true, // Display the text to speech UI toggle
     enableInternetResultsUIToggle: true, // Display the internet results UI toggle
     enableUsePhotUIToggle: true, // Display the use photo UI toggle
-    useAttributionComponent: false, // Use the attribution component to display the attribution of the AI models/services used
+    enabledRabbitMode: true, // Enable the rabbit mode UI toggle
+    enabledLudicrousMode: true, // Enable the ludicrous mode UI toggle
+    useAttributionComponent: true, // Use the attribution component to display the attribution of the AI models/services used
 
     // Rate limiting settings
     useRateLimiting: false, // Use Upstash rate limiting to limit the number of requests per user

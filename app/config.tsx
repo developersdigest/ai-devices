@@ -3,8 +3,6 @@ export const config = {
     inferenceModelProvider: 'groq', // 'groq' or 'openai'
     inferenceModel: 'llama3-8b-8192', // Groq: 'llama3-70b-8192' or 'llama3-8b-8192'.. OpenAI: 'gpt-4-turbo etc
 
-    // BELOW OPTIONAL are some options for the app to use
-    
     // Whisper settings
     whisperModelProvider: 'openai', // 'groq' or 'openai'
     whisperModel: 'whisper-1', // Groq: 'whisper-large-v3' OpenAI: 'whisper-1'
@@ -15,10 +13,10 @@ export const config = {
     ttsvoice: 'alloy', // only openai supported for now... [alloy, echo, fable, onyx, nova, and shimmer]
 
     // OPTIONAL:Vision settings 
-    visionModelProvider: 'openai', // 'openai' or 'fal.ai'
-    visionModel: 'gpt-4-vision', // OpenAI: 'gpt-4-vision' Fal.ai: 'llava-next'
+    visionModelProvider: 'google', // 'openai' or 'fal.ai' or 'google'
+    visionModel: 'gemini-1.5-flash-latest', // OpenAI: 'gpt-4o' or  Fal.ai: 'llava-next' or  Google: 'gemini-1.5-flash-latest'
 
-    // Function calling + conditionally rendered UI
+    // Function calling + conditionally rendered UI 
     functionCallingModelProvider: 'openai', // 'openai' current only
     functionCallingModel: 'gpt-3.5-turbo', // OpenAI: 'gpt-3-5-turbo'
 
@@ -30,7 +28,7 @@ export const config = {
     enableUsePhotUIToggle: true, // Display the use photo UI toggle
     enabledRabbitMode: true, // Enable the rabbit mode UI toggle
     enabledLudicrousMode: true, // Enable the ludicrous mode UI toggle
-    useAttributionComponent: false, // Use the attribution component to display the attribution of the AI models/services used
+    useAttributionComponent: true, // Use the attribution component to display the attribution of the AI models/services used
 
     // Rate limiting settings
     useRateLimiting: false, // Use Upstash rate limiting to limit the number of requests per user

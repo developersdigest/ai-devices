@@ -237,17 +237,8 @@ const Main = () => {
           setPhotos={setUsePhotos}
         />
       )}
-      <div className="absolute bottom-0 right-10 bottom-10 text-xs text-center">
-        <a href="https://groq.com" target="_blank">
-          <img
-            src="https://wow.groq.com/wp-content/uploads/2024/03/PBG-mark2-black.svg"
-            alt="GitHub"
-            className="h-10"
-          />
-        </a>
-      </div>
       {config.useAttributionComponent && (
-        <AttributionComponent usePhotos={usePhotos} useInternet={useInternet} useTTS={useTTS} />
+        <AttributionComponent usePhotos={usePhotos} useInternet={useInternet} useTTS={useTTS} useRateLimiting={config.useRateLimiting} />
       )}
     </div>
   );
